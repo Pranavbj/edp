@@ -118,8 +118,68 @@ class CapacitorEnergy(Scene):
         self.wait(1)
 
 
+
+class ACVoltageCapacitor(Scene):
+    def construct(self):
+
+        equation_1 = MathTex(r"v","=",r" {q ","\over"," C}")
+        equation_2 = MathTex(r"V_m \sin(\omega t) ","=","{q ","\over"," C}")
+        equation_3 = MathTex(r"i",r" = {d \over dt} \left( V_m C \sin(\omega t) \right)"," =",r" \omega C V_m \cos(\omega t)")
+        equation_4 = MathTex(r"i = i_m \sin(\omega t + { \pi \over 2})")
+        equation_5 = MathTex(r"i_m = {V_m \over {1 \over \omega C}}")
+        equation_6 = MathTex(r"X_C = {1 \over \omega C}")
+        equation_7 = MathTex(r"i_m = {V_m \over X_C}")
+
+        equations = [equation_1, equation_2, equation_3, equation_4, equation_5, equation_6, equation_7]
+
+        texts = [
+            MathTex(r"\text{From Kirchhoff’s loop rule, the voltage across the source and the capacitor are equal.}"),
+            MathTex(r"\text{To find the current, we use the relation:}"),
+            MathTex(r"\text{Using the relation:}"),
+            MathTex(r"\text{where the amplitude of the oscillating current is } i_m = \omega C V_m."),
+            MathTex(r"\text{Comparing it to } i_m = ",r"\frac{V_m}{R}",r" \text{ for a purely resistive circuit,}"),
+            MathTex(r"\text{we find that } ",r"\frac{1}{\omega C} ",r"\text{ plays the role of resistance.}"),
+            MathTex(r"\text{It is called capacitive reactance and is denoted by } ",r"X_C:"),
+            MathTex(r"\text{So that the amplitude of the current is:}"),
+        ]
+
+        title = Text(r"AC Voltage in a Capacitor").scale(0.8).to_edge(UP)
+        self.play(Write(title))
+
+        texts[0].shift(UP*1.5).scale(0.6)
+        self.play(Write(texts[0]))
+        self.wait(2)
+
+        equation_1[2].set_color("BLUE")
+        equation_1[4].set_color("PINK")
+        self.play(Write(equation_1))
+        self.wait(2)
+
+        texts[1].shift(UP*1.5).scale(0.8)
+
+        equation_2[0].set_color("RED")
+        equation_2[2].set_color("BLUE")
+        equation_2[4].set_color("PINK")
+
+        self.play(TransformMatchingShapes(texts[0],texts[1]),run_time=2)
+        self.wait(2)
+        self.play(TransformMatchingShapes(equation_1,equation_2),run_time=2)
+        self.wait(2)
+
+        texts[2].shift(UP*1.5).scale(0.8)
+
+        equation_3[0].set_color("RED")
+        equation_3[1].set_color("BLUE")
+        equation_3[3].set_color("PINK")
+
+        self.play(TransformMatchingShapes(texts[1],texts[2]),run_time=2)
+        self.wait(2)
+        self.play(TransformMatchingShapes(equation_2,equation_3),run_time=2)
+        self.wait(2)
+
+
+
         
-    
 
 
 
